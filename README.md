@@ -1,6 +1,8 @@
 # DocuMind AI
 
-DocuMind AI is a full-stack RAG-based document question answering system built with Spring Boot, React, Ollama, and PGVector.
+DocuMind AI is a full-stack RAG (Retrieval-Augmented Generation) based document question-answering system built with Spring Boot, React, Ollama, and PostgreSQL with PGVector.
+
+The application allows users to upload PDF documents, generate embeddings, and ask AI-powered questions grounded in uploaded documents.
 
 Users can:
 - create an account and log in
@@ -24,19 +26,16 @@ Users can:
 
 ## Features
 
-- PDF ingestion with chunking and overlap control
-- Semantic retrieval using PGVector similarity search
-- Retrieval-augmented generation with grounded responses
-- Source previews for transparency
-- Configurable RAG tuning:
-  - `topK`
-  - similarity threshold
-  - chunk size
-  - chunk overlap
-  - prompt context limits
+- User authentication with JWT
+- PDF document upload and management
+- AI-powered question answering using RAG
+- Semantic search with PGVector
+- Source chunk previews for transparency
+- Persistent chat conversations
+- User-specific document isolation
+- Configurable retrieval settings
 - Rolling latency metrics for chat responses
-- Persistent conversation history
-- Authentication and per-user workspace isolation
+- Dockerized setup for easy deployment
 
 ## Architecture
 
@@ -47,7 +46,7 @@ flowchart LR
     A --> O["Ollama"]
     A --> P["PostgreSQL + PGVector"]
 
-    A --> Auth["JWT Auth"]
+    A --> Auth["JWT Authentication"]
     A --> Parse["PDF Parsing"]
     A --> Chunk["Chunking"]
     A --> Retrieve["Vector Retrieval"]
@@ -96,22 +95,23 @@ Users can:
 
 ```text
 docbot/
-├── src/main/java/com/example/docbot
-│   ├── config
-│   ├── controller
-│   ├── dto
-│   ├── entity
-│   ├── repository
-│   ├── security
-│   └── service
-├── src/main/resources
-├── frontend/
-│   ├── src
-│   ├── package.json
-│   └── Dockerfile
-├── docker-compose.yml
-├── Dockerfile
-└── pom.xml
+|-- src/main/java/com/example/docbot
+|   |-- config
+|   |-- controller
+|   |-- dto
+|   |-- entity
+|   |-- repository
+|   |-- security
+|   `-- service
+|-- src/main/resources
+|-- frontend/
+|   |-- src
+|   |-- package.json
+|   `-- Dockerfile
+|-- docker-compose.yml
+|-- docker-compose.prod.yml
+|-- Dockerfile
+`-- pom.xml
 ```
 
 ## API Overview
