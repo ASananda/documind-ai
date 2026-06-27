@@ -1,0 +1,10 @@
+target/
+.git/
+.github/
+.idea/
+frontend/node_modules/
+frontend/dist/
+node_modules/
+DocuMind_AI_Project_Report.pdf
+generate_documind_report.py
+README.md
